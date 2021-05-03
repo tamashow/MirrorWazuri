@@ -5,7 +5,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     [Header("移動領域の指定")][SerializeField]Vector2 leftBottom,rightTop;
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     [SerializeField]float Hspeed,Vspeed;
     Vector2 axis;
     public bool isControllable; //trueのとき操作可能

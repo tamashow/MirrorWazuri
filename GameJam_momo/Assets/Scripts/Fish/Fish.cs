@@ -11,7 +11,7 @@ public class Fish : MonoBehaviour
 {
     GameManager manager;
     FishData fishData;
-    bool isContactingNeedle = false;
+    public bool isContactingNeedle = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,11 +53,11 @@ public class Fish : MonoBehaviour
     {
         return true;
     }
-    void Finish() //turare masita
+    public void Finish() //turare masita
     {
 
     }
-  public virtual void Swim() //update position
+    public virtual void Swim() //update position
     {
 
     }
