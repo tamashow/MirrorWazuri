@@ -58,11 +58,11 @@ public class Fish : MonoBehaviour
     {
         return true;
     }
-    void Finish() //turare masita
+    public void Finish() //turare masita
     {
 
     }
-  public virtual void Swim() //update position
+    public virtual void Swim() //update position
     {
 
     }
