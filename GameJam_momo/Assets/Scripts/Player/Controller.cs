@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField]float Hspeed,Vspeed;
     Vector2 axis;
+    public bool isControllable; //trueのとき操作可能
     
     // Start is called before the first frame update
     void Start()
@@ -16,15 +17,18 @@ public class Controller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        axis = new Vector2(Input.GetAxisRaw("Horizontal")*Hspeed,Input.GetAxisRaw("Vertical")*Vspeed);
-        if((transform.position.x <= leftBottom.x && axis.x < 0) ||
-        (transform.position.x >= rightTop.x && axis.x > 0))
-            axis.x = 0;
-        if((transform.position.y <= leftBottom.y && axis.y < 0) ||
-        (transform.position.y >= rightTop.y && axis.y > 0))
-            axis.y = 0;
-        rb.velocity = axis;
+        if(isControllable)
+        {
+            axis = new Vector2(Input.GetAxisRaw("Horizontal")*Hspeed,Input.GetAxisRaw("Vertical")*Vspeed);
+            if((transform.position.x <= leftBottom.x && axis.x < 0) ||
+            (transform.position.x >= rightTop.x && axis.x > 0))
+                axis.x = 0;
+            if((transform.position.y <= leftBottom.y && axis.y < 0) ||
+            (transform.position.y >= rightTop.y && axis.y > 0))
+                axis.y = 0;
+            rb.velocity = axis;
+        }
     }
 }

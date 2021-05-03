@@ -1475,10 +1475,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2508c3aff4fe8204aaf958dd975d37da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBottom: {x: -7, y: 10}
-  rightTop: {x: 7, y: 15}
+  leftBottom: {x: -6.5, y: 10}
+  rightTop: {x: 6.5, y: 15}
   Hspeed: 3
   Vspeed: 2
+  isControllable: 1
 --- !u!1 &4717269151795754352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,7 +1886,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.022731781
+        value: 0.015
         inSlope: 0
         outSlope: 0
         tangentMode: 0
