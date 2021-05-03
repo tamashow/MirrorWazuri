@@ -9,17 +9,22 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    GameManager manager;
-    FishData fishData;
+    public GameManager manager;
+    public FishData fishData;
     public bool isContactingNeedle = false;
     // Start is called before the first frame update
+    public Fish()
+    {
+
+    }
+
     void Start()
     {
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         float currentWidth = sprite.bounds.size.x;
         float currentHeight = sprite.bounds.size.y;
-        float idealWidth = 0.4f;
-        float idealHeight = 1.0f;
+        float idealWidth = fishData.width;
+        float idealHeight = fishData.height;
         float scaleX = idealWidth / currentWidth;
         float scaleY = idealHeight / currentHeight;
         sprite.transform.localScale = new Vector3(scaleX,scaleY);
@@ -69,8 +74,8 @@ public struct FishData
     public float height;
     public string name; // displayed name on the log
     public float score; // score
-    Texture2D thumbnail; //samuneiru
-    Texture2D bodyImage;
+    public Texture2D thumbnail; //samuneiru
+    public Texture2D bodyImage;
     //Texture2D hardArea;
     //Texture2D softArea;
 }
