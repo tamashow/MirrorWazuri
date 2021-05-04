@@ -20,6 +20,7 @@ public class FishSpawner : MonoBehaviour
     List<Type> normalFishType = new List<Type>() { typeof(SimpleFish) };
     List<Type> hardFishType = new List<Type>() { typeof(SimpleFish) };
 
+
     bool spawning = false;
 
     float minimumSpawningInterval = 3.0f;
@@ -52,6 +53,8 @@ public class FishSpawner : MonoBehaviour
 
     void Update()
     {
+        UpdateFishCount();
+
         if(spawning == true)
         {
             intervalTimer += Time.deltaTime;
@@ -65,6 +68,32 @@ public class FishSpawner : MonoBehaviour
             }
 
         }
+    }
+
+
+    void UpdateFishCount()
+    {
+        int easyCount = 0;
+        int normalCount = 0;
+        int hardCount = 0;
+        foreach(Fish fish in manager.fishesInTheField)
+        {
+            switch (fish.difficulity)
+            {
+                case Difficulity.easy:
+                    easyCount++;
+                    break;
+                case Difficulity.normal:
+                    normalCount++;
+                    break;
+                case Difficulity.hard:
+                    hardCount++;
+                    break;
+            }
+        }
+        this.currentEasyCount = easyCount;
+        this.currentNormalCount = normalCount;
+        this.currentHardCount = hardCount;
     }
 
     public void StartSpawning()
@@ -104,7 +133,7 @@ public class FishSpawner : MonoBehaviour
         FishData data = fishContainer.RandomPick();
         Vector3 position = spawnPositionList[posIndex];
 
-        manager.InstantinateFish(fishType, data, position);
+        manager.InstantinateFish(fishType, data, position,Difficulity.easy);
 
         currentEasyCount++;
     }
@@ -126,4 +155,11 @@ public class FishSpawner : MonoBehaviour
     }
 
 
+}
+
+public enum Difficulity
+{
+    easy,
+    normal,
+    hard
 }

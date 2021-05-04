@@ -15,6 +15,7 @@ public class Fish : MonoBehaviour
     public float maxHeight=0;
     public float minHeight=-4;
     public float initialX=8;
+    public Difficulity difficulity = Difficulity.normal;
     // Start is called before the first frame update
     public Fish()
     {
