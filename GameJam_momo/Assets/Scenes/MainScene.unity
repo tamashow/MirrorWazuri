@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 484957936}
   - component: {fileID: 484957935}
   m_Layer: 0
-  m_Name: Master
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1511ea3087045ec9017a666e90b904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishesInTheField: []
 --- !u!4 &484957936
 Transform:
   m_ObjectHideFlags: 0
