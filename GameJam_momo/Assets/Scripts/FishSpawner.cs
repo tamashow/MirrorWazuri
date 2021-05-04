@@ -53,20 +53,23 @@ public class FishSpawner : MonoBehaviour
 
     void Update()
     {
-        UpdateFishCount();
-
-        if(spawning == true)
+        if(manager.inGame)
         {
-            intervalTimer += Time.deltaTime;
-            if(minimumSpawningInterval < intervalTimer)
-            {
-                intervalTimer = 0f;
-                if (idealFishCount > currentFishCount)
-                {
-                    SpawnAFish();
-                }
-            }
+            UpdateFishCount();
 
+            if(spawning == true)
+            {
+                intervalTimer += Time.deltaTime;
+                if(minimumSpawningInterval < intervalTimer)
+                {
+                    intervalTimer = 0f;
+                    if (idealFishCount > currentFishCount)
+                    {
+                        SpawnAFish();
+                    }
+                }
+
+            }
         }
     }
 
