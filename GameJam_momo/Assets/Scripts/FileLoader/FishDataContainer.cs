@@ -18,5 +18,10 @@ public class FishDataContainer
         }
         return fishData[0];
     }
+
+    public List<FishData> GetFishData()
+    {
+        return fishData;
+    }
 }
 

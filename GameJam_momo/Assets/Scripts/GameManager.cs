@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    List<Fish> fishesInTheField; //instantinated fishes  ゲームの場にある（インスタンス化された）魚たち
+    public List<Fish> fishesInTheField = new List<Fish>(); //instantinated fishes  ゲームの場にある（インスタンス化された）魚たち
     FishPickUpper pickUpper;
-    FishDataContainer fishDataContainer;
+    public FishDataContainer fishDataContainer;
+    LogController logController;
 
     //テスト用変数
     float period = 2f;
@@ -25,12 +26,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+     /*   timer += Time.deltaTime;
         if(period< timer)
         {
             timer = 0f;
             InstantinateFish(fishDataContainer.RandomPick());
-        }
+        }*/
     }
 
     public void InstantinateFish(FishData data)

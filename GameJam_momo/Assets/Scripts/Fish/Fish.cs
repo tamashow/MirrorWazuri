@@ -72,6 +72,7 @@ public struct FishData
 {
     public float width;
     public float height;
+    public string explanation;
     public string name; // displayed name on the log
     public float score; // score
     public Texture2D thumbnail; //samuneiru

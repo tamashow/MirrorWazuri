@@ -5,7 +5,7 @@ using System.IO;
 using System;
 using System.Text;
 
-public class FishLoader : MonoBehaviour
+public class FishLoader 
 {
     // Start is called before the first frame update
     List<FishData> tmpFishdata = new List<FishData>();
@@ -27,10 +27,11 @@ public class FishLoader : MonoBehaviour
       property.json
 
         {
-            "width":100
-            "height":110
+            "width":1.0
+            "height":0.8
            "name":"わかめ",
-           "score":810
+           "score":810,
+            "explanation:"説明文"
         }
 
      */
@@ -86,16 +87,16 @@ public class FishLoader : MonoBehaviour
             string imagePath = folderPath + "/" + FileNameFishAppearanceImage;
 
 
-            if (File.Exists(propertyPath) == null)
+            if (File.Exists(propertyPath) == false)
             {
                 throw new Exception("there is no property file {property.json}");
             }
-            if (File.Exists(thumbnailPath) == null)
+            if (File.Exists(thumbnailPath) == false)
             {
                 throw new Exception("there is no thumbnail file {thumbnail.png}");
             }
 
-            if (File.Exists(imagePath) == null)
+            if (File.Exists(imagePath) == false)
             {
                 throw new Exception("there is no image file {appearance.png}");
             }
@@ -110,6 +111,7 @@ public class FishLoader : MonoBehaviour
             data.score = fishProperty.score;
             data.thumbnail = thumbnail;
             data.bodyImage = image;
+            data.explanation = fishProperty.explanation;
             fishData.Add(data);
         }
 
@@ -161,6 +163,7 @@ public class FishLoader : MonoBehaviour
     class JsonFishProperty
     {
         public string name;
+        public string explanation;
         public float score;
         public float width;
         public float height;
