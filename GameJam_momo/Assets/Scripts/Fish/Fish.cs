@@ -14,7 +14,7 @@ public class Fish : MonoBehaviour
     public bool isContactingNeedle = false;
     public float maxHeight=0;
     public float minHeight=-4;
-    public float initialX=8;
+    public float initialX=9f;
     public Difficulity difficulity = Difficulity.normal;
     // Start is called before the first frame update
     public Fish()
@@ -57,8 +57,13 @@ public class Fish : MonoBehaviour
         else
         {
             Swim();
+            if(Mathf.Abs(transform.position.x) > 10)
+            {
+                manager.fishesInTheField.Remove(this);
+                Destroy(this.gameObject);
+            }
         }
-    
+
     }
 
     public virtual void InitPosition()
@@ -86,9 +91,6 @@ public class Fish : MonoBehaviour
 
     }
 
-    void OnDestroy()
-    {
-    }
 }
 
 public struct FishData
