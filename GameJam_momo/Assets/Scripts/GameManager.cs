@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public List<Fish> fishesInTheField = new List<Fish>(); //instantinated fishes  ゲームの場にある（インスタンス化された）魚たち
     FishPickUpper pickUpper;
     public FishDataContainer fishDataContainer;
-    LogController logController;
+    [SerializeField] LogController logController;
 
     //テスト用変数
     float period = 2f;
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 
     public void FishCaught(Fish fish) //スコアを計算したりログに流したりしましょう
     {
+        
         fishesInTheField.Remove(fish);
         score += (int)fish.fishData.score;
         //ログの計算
@@ -97,5 +98,6 @@ public class GameManager : MonoBehaviour
         }
         fishesInTheField.Clear();
     }
+
 }
 
