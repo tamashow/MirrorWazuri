@@ -6,6 +6,7 @@ public class Opening : MonoBehaviour
 {
     [SerializeField]GameObject wa;
     [SerializeField]float moveTime; //移動するまでにかかる時間
+    [SerializeField]GameManager gameManager;
     
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class Opening : MonoBehaviour
     {
         
     }
-    IEnumerator Move()
+    public IEnumerator Move()
     {
         Vector3 translation = ((transform.position - wa.transform.position)/moveTime);
         Vector3 rotation = new Vector3(0,0,180/moveTime);
