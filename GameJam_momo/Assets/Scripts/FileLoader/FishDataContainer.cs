@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class FishDataContainer 
 {
-    private List<FishData> fishData;
+    private List<FishData> fishData = new List<FishData>();
 
     public FishDataContainer(List<FishData> fishData)
     {
@@ -16,7 +17,9 @@ public class FishDataContainer
         {
             throw new System.Exception("no fishdata found");
         }
-        return fishData[0];
+        System.Random r1 = new System.Random();
+        int index = r1.Next(0, fishData.Count);
+        return fishData[index];
     }
 
     public List<FishData> GetFishData()
