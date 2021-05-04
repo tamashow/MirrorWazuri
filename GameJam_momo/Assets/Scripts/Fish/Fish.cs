@@ -12,6 +12,9 @@ public class Fish : MonoBehaviour
     public GameManager manager;
     public FishData fishData;
     public bool isContactingNeedle = false;
+    public float maxHeight=0;
+    public float minHeight=-4;
+    public float initialX=8;
     // Start is called before the first frame update
     public Fish()
     {
@@ -27,6 +30,11 @@ public class Fish : MonoBehaviour
         float idealHeight = fishData.height;
         float scaleX = idealWidth / currentWidth;
         float scaleY = idealHeight / currentHeight;
+        InitPosition();
+        if(transform.position.x < 0)
+        {
+            scaleX *= -1;
+        }
         sprite.transform.localScale = new Vector3(scaleX,scaleY);
         InitPosition();
     }
@@ -55,6 +63,9 @@ public class Fish : MonoBehaviour
     public virtual void InitPosition()
     {
         //override it
+        int r = Random.Range(0,2);//0なら左、1なら右
+        r = r*2-1; //0を-1に
+        this.transform.position = new Vector2(initialX*r,Random.Range(minHeight,maxHeight));
     }
     void Regist()
     {
