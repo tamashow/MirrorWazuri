@@ -28,6 +28,7 @@ public class Fish : MonoBehaviour
         float scaleX = idealWidth / currentWidth;
         float scaleY = idealHeight / currentHeight;
         sprite.transform.localScale = new Vector3(scaleX,scaleY);
+        InitPosition();
     }
 
     // Update is called once per frame
@@ -49,6 +50,11 @@ public class Fish : MonoBehaviour
             Swim();
         }
     
+    }
+
+    public virtual void InitPosition()
+    {
+        //override it
     }
     void Regist()
     {
@@ -72,6 +78,7 @@ public struct FishData
 {
     public float width;
     public float height;
+    public string explanation;
     public string name; // displayed name on the log
     public float score; // score
     public Texture2D thumbnail; //samuneiru

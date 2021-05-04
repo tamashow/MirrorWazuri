@@ -5,11 +5,13 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
+[RequireComponent(typeof(CanvasGroup))]
+
 public class Log : MonoBehaviour //サムネイル用のspriteと名前用のtextとスコア用のtextを子に持つゲームオブジェクトにアタッチする
-{
+{ 
     [SerializeField] SpriteRenderer thumbnailSpriteRenderer;
-    [SerializeField] TextMesh fishNameText;
-    [SerializeField] TextMesh scoreText;
+    [SerializeField] Text fishNameText;
+    [SerializeField] Text scoreText;
 
     LogController logController;
 
@@ -22,7 +24,7 @@ public class Log : MonoBehaviour //サムネイル用のspriteと名前用のtex
     float alpha = 1.0f;
     float scale = 1.0f;
     
-    FishData fishData; //gameManagerが入れてくれる
+    public FishData fishData = new FishData(); //gameManagerが入れてくれる
 
     float score
     {
@@ -45,11 +47,27 @@ public class Log : MonoBehaviour //サムネイル用のspriteと名前用のtex
         float width = thumbnailSpriteRenderer.bounds.size.x;
         float height = thumbnailSpriteRenderer.bounds.size.y;
 
-        Sprite sprite = Sprite.Create(fishData.thumbnail, new Rect(0, 0, width, height), Vector2.zero);
+        if(fishData.bodyImage == null)
+        {
+            throw new System.Exception("fish data not set");
+        }
+
+        Sprite sprite = Sprite.Create(fishData.bodyImage, new Rect(0.0f, 0.0f, fishData.bodyImage.width, fishData.bodyImage.height), Vector2.zero);
+        sprite.name = "dynamicSprite!";
         thumbnailSpriteRenderer.sprite = sprite;
+        thumbnailSpriteRenderer.gameObject.transform.Translate(new Vector3(-width/2, -height/2,0.0f));
+
+        float currentWidth = sprite.bounds.size.x;
+        float currentHeight = sprite.bounds.size.y;
+        float idealWidth = width;
+        float idealHeight = height;
+        float scaleX = idealWidth / currentWidth;
+        float scaleY = idealHeight / currentHeight;
+       // thumbnailSpriteRenderer.gameObject.transform.localScale = new Vector3(scaleX, scaleY);
+
 
         fishNameText.text = fishData.name;
-        scoreText.text = ((int)score).ToString("000");
+        scoreText.text = ((int)score).ToString("000") + "pt";
     }
 
     // Update is called once per frame
@@ -59,7 +77,8 @@ public class Log : MonoBehaviour //サムネイル用のspriteと名前用のtex
     }
     public void StartDisappeare()
     {
-        thumbnailSpriteRenderer.DOFade(endValue: 0,duration: 0.5f).OnComplete(() =>
+        CanvasGroup group = this.GetComponent<CanvasGroup>();
+        group.DOFade(endValue: 0,duration: 0.5f).OnComplete(() =>
         {
             Destroy(this.gameObject);
         }
@@ -68,6 +87,9 @@ public class Log : MonoBehaviour //サムネイル用のspriteと名前用のtex
     public void moveToNextPoint(Vector3 point,float duration)
     {
         isMovingFlag = true;
-        thumbnailSpriteRenderer.gameObject.transform.DOMove( point , duration).SetEase(Ease.InOutQuart);
+        this.gameObject.transform.DOMove( point , duration).SetEase(Ease.InOutQuart).OnComplete(() =>
+        {
+            isMovingFlag = false;
+        });
     }
 }

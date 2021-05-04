@@ -1,7 +1,7 @@
 {
-            "width":1.0,
-            "height":0.8,
-           "name":"わかめ",
-           "score":810,
-           "explanation":"説明文"
+    "width": "1.0f",
+    "height": "0.8f",
+    "name": "わかめ",
+    "score": 810,
+    "explanation": "立派な『わ』かめだ……お味噌汁に入れると美味しい。"
 }
