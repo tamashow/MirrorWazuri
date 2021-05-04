@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -10,11 +11,10 @@ public class GameManager : MonoBehaviour
     FishPickUpper pickUpper;
     public FishDataContainer fishDataContainer;
     [SerializeField] LogController logController;
+    [SerializeField]Text TimeText;
+    [SerializeField] int limitTime;
 
-    //テスト用変数
-    float period = 2f;
-    float timer = 0f;
-    //テスト用変数
+    float timer; //ゲーム開始時にlimitTimeに設定する
     public int score;
 
     // Start is called before the first frame update
@@ -29,12 +29,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     /*   timer += Time.deltaTime;
-        if(period< timer)
+        if(true)//
         {
-            timer = 0f;
-            InstantinateFish(fishDataContainer.RandomPick());
-        }*/
+            timer -= Time.deltaTime;
+            TimeText.text = ((int)timer +1).ToString();
+            if(timer <= 0)
+            {
+                //ゲーム終了の処理
+            }
+        }
     }
 
     public void InstantinateFish(Type type,FishData data,Vector3 position)
