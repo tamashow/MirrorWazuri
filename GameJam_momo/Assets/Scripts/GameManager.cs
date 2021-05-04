@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     float period = 2f;
     float timer = 0f;
     //テスト用変数
-    
+    public int score;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +84,22 @@ public class GameManager : MonoBehaviour
     {
         
         fishesInTheField.Remove(fish);
+        score += (int)fish.fishData.score;
+        //ログの計算
+        logController.addFishToLog(fish);
     }
+<<<<<<< HEAD
+=======
+    
+    void Reset() //以下の処理は全て仮のものです
+    {
+        score = 0;
+        foreach(var fish in fishesInTheField)
+        {
+            Destroy(fish.gameObject);
+        }
+        fishesInTheField.Clear();
+    }
+>>>>>>> df8e5dcaf72a9fdc5185414d4dce95c14850bec0
 }
 
