@@ -60,6 +60,27 @@ public class GameManager : MonoBehaviour
         fishesInTheField.Add(fish as Fish);
     }
 
+    public void InstantinateFish(Type type, FishData data, Vector3 position, Difficulity difficulity)
+    {
+        var fishObj = new GameObject("fish");
+        SpriteRenderer spriteRenderer = fishObj.AddComponent<SpriteRenderer>();
+        Sprite sprite = Sprite.Create(data.bodyImage, new Rect(0.0f, 0.0f, data.bodyImage.width, data.bodyImage.height), Vector2.zero);
+        sprite.name = "dynamicSprite!";
+        spriteRenderer.sprite = sprite;
+        BoxCollider2D colider = fishObj.AddComponent<BoxCollider2D>();
+        Fish fish = fishObj.AddComponent(type) as Fish;
+
+        if (fish == null)
+        {
+            throw new Exception("given type is not child of fish");
+        }
+        fish.manager = this;
+        fish.fishData = data;
+        fish.difficulity = difficulity;
+
+        fishesInTheField.Add(fish as Fish);
+    }
+
     public void InstantinateFish<FishType>(FishData data, Vector3 position)
     where FishType : Fish
     {
@@ -85,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     public void FishCaught(Fish fish) //スコアを計算したりログに流したりしましょう
     {
-        
+           
         fishesInTheField.Remove(fish);
         score += (int)fish.fishData.score;
         //ログの計算
