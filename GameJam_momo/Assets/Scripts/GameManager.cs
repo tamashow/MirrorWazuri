@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] LogController logController;
     [SerializeField]Text TimeText;
     [SerializeField] int limitTime;
-
+    [SerializeField]Text scoreText;
+    [SerializeField]Opening opening;
     float timer; //ゲーム開始時にlimitTimeに設定する
     public int score;
 
@@ -29,10 +30,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.anyKeyDown)//なんかの入力を受けたらゲームスタート
+        {
+            StartCoroutine(opening.Move());
+        }
         if(true)//
         {
             timer -= Time.deltaTime;
-            TimeText.text = ((int)timer +1).ToString();
+            TimeText.text = ((int)(timer +0.99f)).ToString();
             if(timer <= 0)
             {
                 //ゲーム終了の処理
@@ -111,6 +116,7 @@ public class GameManager : MonoBehaviour
         score += (int)fish.fishData.score;
         //ログの計算
         logController.addFishToLog(fish);
+        scoreText.text = score.ToString();
     }
     
     void Reset() //以下の処理は全て仮のものです
