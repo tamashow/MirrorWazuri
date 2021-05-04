@@ -22,5 +22,6 @@ public class EndButton : MonoBehaviour
     {
         resultView.GetComponent<CanvasGroup>().alpha = 0f;
         manager.Reset();
+        resultView.gameObject.SetActive(false);
     }
 }
