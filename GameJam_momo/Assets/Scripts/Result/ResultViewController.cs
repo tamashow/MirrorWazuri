@@ -26,7 +26,7 @@ public class ResultViewController : MonoBehaviour
     }
     public void ShowResult()
     {
-        this.gameObject.SetActive(true);
+        this.transform.position = Vector3.zero;
         group.DOFade(1, duration: 2.0f);
         historyBox.text = manager.logController.ExportHistory();
         sum.text = ((int)manager.score).ToString("0000000") + "pt";

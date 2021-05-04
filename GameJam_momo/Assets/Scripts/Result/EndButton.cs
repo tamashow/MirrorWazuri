@@ -22,6 +22,6 @@ public class EndButton : MonoBehaviour
     {
         resultView.GetComponent<CanvasGroup>().alpha = 0f;
         manager.Reset();
-        resultView.gameObject.SetActive(false);
+        resultView.gameObject.transform.position = new Vector3(100f,0f,0f);
     }
 }
