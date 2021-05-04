@@ -88,8 +88,6 @@ public class GameManager : MonoBehaviour
         //ログの計算
         logController.addFishToLog(fish);
     }
-<<<<<<< HEAD
-=======
     
     void Reset() //以下の処理は全て仮のものです
     {
@@ -100,6 +98,6 @@ public class GameManager : MonoBehaviour
         }
         fishesInTheField.Clear();
     }
->>>>>>> df8e5dcaf72a9fdc5185414d4dce95c14850bec0
+
 }
 

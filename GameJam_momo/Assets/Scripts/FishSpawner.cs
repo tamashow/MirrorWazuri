@@ -25,9 +25,9 @@ public class FishSpawner : MonoBehaviour
     float minimumSpawningInterval = 3.0f;
     float intervalTimer = 0f;
 
-    int idealEasyCount = 3;
-    int idealNormalCount = 0;
-    int idealHardCount = 0;
+    [SerializeField] int idealEasyCount = 3;
+    [SerializeField] int idealNormalCount = 3;
+    [SerializeField] int idealHardCount = 0;
 
     int currentEasyCount = 0;
     int currentNormalCount = 0;

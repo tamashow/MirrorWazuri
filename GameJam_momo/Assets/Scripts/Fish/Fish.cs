@@ -77,12 +77,8 @@ public class Fish : MonoBehaviour
     }
     public void Finish() //turare masita
     {
-<<<<<<< HEAD
-        
-=======
         manager.FishCaught(this);
         Destroy(this.gameObject);
->>>>>>> df8e5dcaf72a9fdc5185414d4dce95c14850bec0
     }
     public virtual void Swim() //update position
     {
