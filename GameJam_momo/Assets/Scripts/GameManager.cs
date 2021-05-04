@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,10 +33,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!inGame && Input.anyKeyDown)//なんかの入力を受けたらゲームスタート
+        if(!inGame && Input.anyKeyDown && !(resultView.transform.position == Vector3.zero))//なんかの入力を受けたらゲームスタート
         {
             StartCoroutine(opening.Move());
-            inGame = true;
+            //inGame = true;
             timer = limitTime;
             scoreText.text = score.ToString();
         }
@@ -133,10 +134,11 @@ public class GameManager : MonoBehaviour
             Destroy(fish.gameObject);
         }
         fishesInTheField.Clear();
+        SceneManager.LoadScene("MainScene");
     }
 
     void Finish()
-    {
+    { 
         resultView.ShowResult();
     }
 }
