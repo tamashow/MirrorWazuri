@@ -42,6 +42,7 @@ public class Stinger : MonoBehaviour
 
     IEnumerator CatchFish(Fish fish)
     {
+        fish.gameObject.GetComponent<Collider2D>().enabled = false;
         while(controller.gameObject.transform.position.y < catchHeight)
         {
             yield return null;
