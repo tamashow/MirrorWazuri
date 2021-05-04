@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int limitTime;
     [SerializeField]Text scoreText;
     [SerializeField]Opening opening;
+    public bool inGame;
     float timer; //ゲーム開始時にlimitTimeに設定する
     public int score;
 
@@ -31,17 +32,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.anyKeyDown)//なんかの入力を受けたらゲームスタート
+        if(!inGame && Input.anyKeyDown)//なんかの入力を受けたらゲームスタート
         {
             StartCoroutine(opening.Move());
+            inGame = true;
+            timer = limitTime;
+            scoreText.text = score.ToString();
         }
-        if(true)//
+        if(inGame)
         {
             timer -= Time.deltaTime;
             TimeText.text = ((int)(timer +0.99f)).ToString();
             if(timer <= 0)
             {
-                //ゲーム終了の処理
+                inGame = false;
+                Finish();
             }
         }
     }

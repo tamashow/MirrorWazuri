@@ -11,7 +11,7 @@ public class Opening : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Move());
+        
     }
 
     // Update is called once per frame
@@ -37,5 +37,6 @@ public class Opening : MonoBehaviour
         }
         gameObject.SetActive(false);
         wa.transform.parent.gameObject.SetActive(true);
+        gameManager.inGame = true;
     }
 }
