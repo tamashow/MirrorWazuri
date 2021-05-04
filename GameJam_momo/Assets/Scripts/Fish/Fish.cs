@@ -28,6 +28,7 @@ public class Fish : MonoBehaviour
         float scaleX = idealWidth / currentWidth;
         float scaleY = idealHeight / currentHeight;
         sprite.transform.localScale = new Vector3(scaleX,scaleY);
+        InitPosition();
     }
 
     // Update is called once per frame
@@ -49,6 +50,11 @@ public class Fish : MonoBehaviour
             Swim();
         }
     
+    }
+
+    public virtual void InitPosition()
+    {
+        //override it
     }
     void Regist()
     {
