@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public List<Fish> fishesInTheField = new List<Fish>(); //instantinated fishes  ゲームの場にある（インスタンス化された）魚たち
     FishPickUpper pickUpper;
     public FishDataContainer fishDataContainer;
-    [SerializeField] LogController logController;
+    [SerializeField] public LogController logController;
+    [SerializeField] ResultViewController resultView;
     [SerializeField]Text TimeText;
     [SerializeField] int limitTime;
 
@@ -113,7 +114,7 @@ public class GameManager : MonoBehaviour
         logController.addFishToLog(fish);
     }
     
-    void Reset() //以下の処理は全て仮のものです
+    public void Reset() //以下の処理は全て仮のものです
     {
         score = 0;
         foreach(var fish in fishesInTheField)
@@ -123,5 +124,9 @@ public class GameManager : MonoBehaviour
         fishesInTheField.Clear();
     }
 
+    void Finish()
+    {
+        resultView.ShowResult();
+    }
 }
 
