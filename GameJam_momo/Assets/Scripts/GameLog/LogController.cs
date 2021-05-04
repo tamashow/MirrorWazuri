@@ -10,6 +10,7 @@ public class LogController : MonoBehaviour
     [SerializeField] Vector3 popUpInitPosition = new Vector3(0f,-2f,0f);
     [SerializeField] Vector3 popUpStopPosition = new Vector3(0f, 0f, 0f);
     Queue<Log> logs = new Queue<Log>();
+    List<FishData> hisory = new List<FishData>();
     int moveQueue = 0;
    // [SerializeField] float heightDisplayedArea = 5f;
     private const float pitch = 15.0f; //ログとログの間隔
@@ -41,6 +42,7 @@ public class LogController : MonoBehaviour
 
     public void addFishToLog(FishData data)
     {
+        hisory.Add(data);
          Vector3 spawnOn = this.transform.position + new Vector3(0f, pitch * logs.Count, 0f);
 
         SpawnPopUp(data);
@@ -144,4 +146,21 @@ public class LogController : MonoBehaviour
 
     }
 
+    public string  ExportHistory()
+    {
+        string outStr = "";
+
+        foreach(FishData data in hisory)
+        {
+            string name = data.name;
+            string score = ((int)data.score).ToString("000") + "pt";
+            outStr += name + ": " + score + "pt" + "\n";
+        }
+        return outStr;
+    }
+
+    private void Reset()
+    {
+        hisory = new List<FishData>();
+    }
 }
