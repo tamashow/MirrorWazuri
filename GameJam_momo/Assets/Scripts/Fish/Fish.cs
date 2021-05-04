@@ -77,7 +77,7 @@ public class Fish : MonoBehaviour
     }
     public void Finish() //turare masita
     {
-
+        
     }
     public virtual void Swim() //update position
     {

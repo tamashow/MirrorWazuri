@@ -12,11 +12,11 @@ public class FishSpawner : MonoBehaviour
     }
 
     List<Vector3> spawnPositionList = new List<Vector3>() {
-                                          new Vector3(50f,0f,0f),
-                                          new Vector3(-50f,0f,0f)
+                                          new Vector3(0f,0f,0f),
+                                          new Vector3(0f,0f,0f)
                                              };
 
-    List<Type> easyFishType = new List<Type>() {typeof(SimpleFish)}  ;
+    List<Type> easyFishType = new List<Type>() {typeof(FloatFish)}  ;
     List<Type> normalFishType = new List<Type>() { typeof(SimpleFish) };
     List<Type> hardFishType = new List<Type>() { typeof(SimpleFish) };
 
