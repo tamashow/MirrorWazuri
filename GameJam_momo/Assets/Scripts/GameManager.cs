@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public bool inGame;
     float timer; //ゲーム開始時にlimitTimeに設定する
     public int score;
+    Coroutine coroutine = null;
+    AudioSource audio;
+    [SerializeField]AudioClip fanfare;
+    [SerializeField]AudioClip penalty;
 
     // Start is called before the first frame update
     void Start()
@@ -28,17 +32,18 @@ public class GameManager : MonoBehaviour
         fishLoader.LoadFishData();
         fishDataContainer = fishLoader.Export();
         spawner.StartSpawning();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!inGame && Input.anyKeyDown && !(resultView.transform.position == Vector3.zero))//なんかの入力を受けたらゲームスタート
+        if(!inGame && Input.anyKeyDown && resultView.transform.position != Vector3.back*2 && coroutine == null)//なんかの入力を受けたらゲームスタート
         {
-            StartCoroutine(opening.Move());
+            coroutine = StartCoroutine(opening.Move());
             //inGame = true;
             timer = limitTime;
-            scoreText.text = score.ToString();
+            
         }
         if(inGame)
         {
@@ -48,6 +53,10 @@ public class GameManager : MonoBehaviour
             {
                 inGame = false;
                 Finish();
+            }
+            if(scoreText.text == "")
+            {
+                scoreText.text = score.ToString();
             }
         }
     }
@@ -118,12 +127,16 @@ public class GameManager : MonoBehaviour
 
     public void FishCaught(Fish fish) //スコアを計算したりログに流したりしましょう
     {
-           
-        fishesInTheField.Remove(fish);
-        score += (int)fish.fishData.score;
-        //ログの計算
-        logController.addFishToLog(fish);
-        scoreText.text = score.ToString();
+        if(inGame)
+        {
+            fishesInTheField.Remove(fish);
+            score += (int)fish.fishData.score;
+            //ログの計算
+            logController.addFishToLog(fish);
+            scoreText.text = score.ToString();
+            if(fish.fishData.score > 0) audio.PlayOneShot(fanfare);
+            else audio.PlayOneShot(penalty);
+        }
     }
     
     public void Reset() //以下の処理は全て仮のものです
