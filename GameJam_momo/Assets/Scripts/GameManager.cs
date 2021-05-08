@@ -61,25 +61,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void InstantinateFish(Type type,FishData data,Vector3 position)
-    {
-        var fishObj = new GameObject("fish");
-        SpriteRenderer spriteRenderer = fishObj.AddComponent<SpriteRenderer>();
-        Sprite sprite = Sprite.Create(data.bodyImage, new Rect(0.0f, 0.0f, data.bodyImage.width, data.bodyImage.height), Vector2.zero);
-        sprite.name = "dynamicSprite!";
-        spriteRenderer.sprite = sprite;
-        BoxCollider2D colider = fishObj.AddComponent<BoxCollider2D>();
-        Fish fish = fishObj.AddComponent(type) as Fish;
+    // public void InstantinateFish(Type type,FishData data,Vector3 position)
+    // {
+    //     var fishObj = new GameObject("fish");
+    //     SpriteRenderer spriteRenderer = fishObj.AddComponent<SpriteRenderer>();
+    //     Sprite sprite = Sprite.Create(data.bodyImage, new Rect(0.0f, 0.0f, data.bodyImage.width, data.bodyImage.height), Vector2.zero);
+    //     sprite.name = "dynamicSprite!";
+    //     spriteRenderer.sprite = sprite;
+    //     BoxCollider2D colider = fishObj.AddComponent<BoxCollider2D>();
+    //     Fish fish = fishObj.AddComponent(type) as Fish;
 
-        if (fish == null)
-        {
-            throw new Exception("given type is not child of fish");
-        }
-            fish.manager = this;
-        fish.fishData = data;
+    //     if (fish == null)
+    //     {
+    //         throw new Exception("given type is not child of fish");
+    //     }
+    //         fish.manager = this;
+    //     fish.fishData = data;
 
-        fishesInTheField.Add(fish as Fish);
-    }
+    //     fishesInTheField.Add(fish as Fish);
+    // }
 
     public void InstantinateFish(Type type, FishData data, Vector3 position, Difficulity difficulity)
     {
@@ -88,7 +88,8 @@ public class GameManager : MonoBehaviour
         Sprite sprite = Sprite.Create(data.bodyImage, new Rect(0.0f, 0.0f, data.bodyImage.width, data.bodyImage.height), Vector2.zero);
         sprite.name = "dynamicSprite!";
         spriteRenderer.sprite = sprite;
-        BoxCollider2D colider = fishObj.AddComponent<BoxCollider2D>();
+        BoxCollider2D collider = fishObj.AddComponent<BoxCollider2D>();
+        collider.size = new Vector2(5,5);
         Fish fish = fishObj.AddComponent(type) as Fish;
 
         if (fish == null)
