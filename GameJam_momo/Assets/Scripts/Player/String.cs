@@ -23,7 +23,7 @@ public class String : MonoBehaviour
         
         lr = GetComponent<LineRenderer>();
         lr.positionCount = pointNum;
-
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

@@ -18,7 +18,7 @@ public class FishSpawner : MonoBehaviour
 
     List<Type> easyFishType = new List<Type>() {typeof(FloatFish)}  ;
     List<Type> normalFishType = new List<Type>() { typeof(SimpleFish) };
-    List<Type> hardFishType = new List<Type>() { typeof(SimpleFish) };
+    List<Type> hardFishType = new List<Type>() { typeof(HardFish) };
 
 
     bool spawning = false;
@@ -26,9 +26,9 @@ public class FishSpawner : MonoBehaviour
     float minimumSpawningInterval = 3.0f;
     float intervalTimer = 0f;
 
-    [SerializeField] int idealEasyCount = 3;
-    [SerializeField] int idealNormalCount = 3;
-    [SerializeField] int idealHardCount = 0;
+    [SerializeField] int idealEasyCount = 0;
+    [SerializeField] int idealNormalCount = 0;
+    [SerializeField] int idealHardCount = 1;
 
     int currentEasyCount = 0;
     int currentNormalCount = 0;
@@ -143,12 +143,32 @@ public class FishSpawner : MonoBehaviour
 
     void SpawnNormalFish()
     {
+        System.Random r1 = new System.Random();
+        int typeIndex = r1.Next(0, normalFishType.Count);
+        int posIndex = r1.Next(0, spawnPositionList.Count);
 
+        Type fishType = normalFishType[typeIndex];
+        FishData data = fishContainer.RandomPick();
+        Vector3 position = spawnPositionList[posIndex];
+
+        manager.InstantinateFish(fishType, data, position, Difficulity.normal);
+
+        currentNormalCount++;
     }
 
     void SpawnHardFish()
     {
+        System.Random r1 = new System.Random();
+        int typeIndex = r1.Next(0, hardFishType.Count);
+        int posIndex = r1.Next(0, spawnPositionList.Count);
 
+        Type fishType = hardFishType[typeIndex];
+        FishData data = fishContainer.RandomPick();
+        Vector3 position = spawnPositionList[posIndex];
+
+        manager.InstantinateFish(fishType, data, position, Difficulity.hard);
+
+        currentHardCount++;
     }
 
 

@@ -20,13 +20,13 @@ public class ResultViewController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    // void Update()
+    // {
         
-    }
+    // }
     public void ShowResult()
     {
-        this.transform.position = Vector3.zero;
+        this.transform.position = Vector3.back*5;
         group.DOFade(1, duration: 2.0f);
         historyBox.text = manager.logController.ExportHistory();
         sum.text = ((int)manager.score).ToString("0000000") + "pt";

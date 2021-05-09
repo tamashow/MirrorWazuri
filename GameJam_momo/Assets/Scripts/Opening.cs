@@ -7,6 +7,7 @@ public class Opening : MonoBehaviour
     [SerializeField]GameObject wa;
     [SerializeField]float moveTime; //移動するまでにかかる時間
     [SerializeField]GameManager gameManager;
+    [SerializeField]GameObject canvas;
     
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,7 @@ public class Opening : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        canvas.SetActive(false);
     }
     public IEnumerator Move()
     {
@@ -35,8 +36,9 @@ public class Opening : MonoBehaviour
             timer += dt;
             yield return null;
         }
-        gameObject.SetActive(false);
         wa.transform.parent.gameObject.SetActive(true);
+        canvas.SetActive(true);
         gameManager.inGame = true;
+        gameObject.SetActive(false);
     }
 }

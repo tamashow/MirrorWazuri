@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour
 {
     [Header("移動領域の指定")][SerializeField]Vector2 leftBottom,rightTop;
     [HideInInspector] public Rigidbody2D rb;
+    [SerializeField] GameManager manager;
     [SerializeField]float Hspeed,Vspeed;
     Vector2 axis;
     public bool isControllable; //trueのとき操作可能
@@ -29,6 +30,10 @@ public class Controller : MonoBehaviour
             (transform.position.y >= rightTop.y && axis.y > 0))
                 axis.y = 0;
             rb.velocity = axis;
+        }
+        if (manager.inGame == false && isControllable == true)
+        {
+            isControllable = false;
         }
     }
 }
