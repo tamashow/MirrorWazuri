@@ -13,9 +13,10 @@ public class LogController : MonoBehaviour
     List<FishData> hisory = new List<FishData>();
     int moveQueue = 0;
    // [SerializeField] float heightDisplayedArea = 5f;
-    private const float pitch = 15.0f; //ログとログの間隔
+    [SerializeField] float pitch = 15.0f; //ログとログの間隔
     public float scrollTime= 0.7f; //次の停留点まで移動する時間
-    float waitDuration = 3.0f; //ログが同じところに止まる時間
+    // [SerializeField] float waitDuration = 3.0f; //ログが同じところに止まる時間
+    [SerializeField] int maxCount = 3;
     float waitTimer = 0f;
 
 
@@ -108,7 +109,7 @@ public class LogController : MonoBehaviour
             }
             else
             {
-                if(waitTimer > waitDuration)
+                if(logs.Count > maxCount)
                 {
                     waitTimer = 0f;
 

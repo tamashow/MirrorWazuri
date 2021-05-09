@@ -16,7 +16,7 @@ public class PopUp : MonoBehaviour //サムネイル用のspriteと名前用のt
 
     LogController logController;
 
-    float waitTime = 2f;
+    float waitTime = 4f;
     public Vector3 stopPoint;
     public Vector3 disappearPoint; //画面外へ
 

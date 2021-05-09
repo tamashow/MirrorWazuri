@@ -16,6 +16,11 @@ public class Fish : MonoBehaviour
     public float minHeight=-4;
     public float initialX=9f;
     public Difficulity difficulity = Difficulity.normal;
+
+    bool registFlag = false;
+    float registOmega = 0.025f;
+    float registTime = 0f;
+
     // Start is called before the first frame update
     public Fish()
     {
@@ -31,6 +36,7 @@ public class Fish : MonoBehaviour
         float idealHeight = fishData.height;
         float scaleX = idealWidth / currentWidth;
         float scaleY = idealHeight / currentHeight;
+
         InitPosition();
         if(transform.position.x < 0)
         {
@@ -75,7 +81,22 @@ public class Fish : MonoBehaviour
     }
     void Regist()
     {
+        registTime += Time.deltaTime;
+        if(registTime >= registOmega)
+        {
 
+            registTime = 0f;
+            if(registFlag == true)
+            {
+                transform.Rotate(0, 0, 20);
+                registFlag = false;
+            }
+            else
+            {
+                transform.Rotate(0, 0, -20);
+                    registFlag = true;
+            }
+        }
     }
     bool ExistsUnderSea()
     {
