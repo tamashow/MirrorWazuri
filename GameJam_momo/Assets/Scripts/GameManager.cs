@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
         if(!inGame && Input.anyKeyDown && !resultView.gameObject.activeInHierarchy && coroutine == null)//なんかの入力を受けたらゲームスタート
         {
             coroutine = StartCoroutine(opening.Move());
