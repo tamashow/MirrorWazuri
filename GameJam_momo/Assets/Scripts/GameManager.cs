@@ -33,12 +33,13 @@ public class GameManager : MonoBehaviour
         fishDataContainer = fishLoader.Export();
         spawner.StartSpawning();
         audio = GetComponent<AudioSource>();
+        resultView.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!inGame && Input.anyKeyDown && resultView.transform.position != Vector3.back*2 && coroutine == null)//なんかの入力を受けたらゲームスタート
+        if(!inGame && Input.anyKeyDown && !resultView.gameObject.activeInHierarchy && coroutine == null)//なんかの入力を受けたらゲームスタート
         {
             coroutine = StartCoroutine(opening.Move());
             //inGame = true;
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
 
     void Finish()
     { 
+        resultView.gameObject.SetActive(true);
         resultView.ShowResult();
     }
 }

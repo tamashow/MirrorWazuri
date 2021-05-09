@@ -14,6 +14,16 @@
 ■基本操作
 WASD or 方向キー：移動
 
+■謝辞
+この作品の制作には、下記のソフトウェア及び素材を使用させていただきました。
+
+○ソフトウェア
+・Unity2020.3.6f1
+
+○効果音素材
+・フリー効果音素材 くらげ工匠　http://www.kurage-kosho.info/
+・効果音ラボ　https://soundeffect-lab.info/
+
 ■制作者
 東北大学マイコンプロシージャ
 http://www.proc.org.tohoku.ac.jp/
